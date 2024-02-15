@@ -8,4 +8,4 @@ open the `ai-service` folder
     ```
 2. Get api key and org id from OpenAI website
     `https://platform.openai.com/api-keys`
-    ![Api key](/assets/images/api_key.png)
+    ![Api key](https://github.com/VishalLokam/microservice-application-with-openai/blob/main/ai-service/assets/images/api_key.png)
