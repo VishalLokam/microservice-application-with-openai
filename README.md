@@ -6,6 +6,9 @@ open the `ai-service` folder
     ```
     pip install --no-cache-dir -r requirements.txt
     ```
-2. Get api key and org id from OpenAI website
+2. Get api key and org id from OpenAI website  
     `https://platform.openai.com/api-keys`  
-    ![Api key](https://github.com/VishalLokam/microservice-application-with-openai/blob/main/ai-service/assets/images/api_key.png)
+    ![Api key](https://github.com/VishalLokam/microservice-application-with-openai/blob/main/ai-service/assets/images/api_key.png)  
+
+    `https://platform.openai.com/account/organization`
+    ![Organisation id]()
