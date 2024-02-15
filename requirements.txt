@@ -1,0 +1,4 @@
+dotenv
+os
+semantic_kernel
+flask
