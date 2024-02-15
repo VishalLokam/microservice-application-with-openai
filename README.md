@@ -10,5 +10,5 @@ open the `ai-service` folder
     `https://platform.openai.com/api-keys`  
     ![Api key](https://github.com/VishalLokam/microservice-application-with-openai/blob/main/ai-service/assets/images/api_key.png)  
 
-    `https://platform.openai.com/account/organization`
-    ![Organisation id]()
+    `https://platform.openai.com/account/organization`  
+    ![Organisation id](https://github.com/VishalLokam/microservice-application-with-openai/blob/main/ai-service/assets/images/org_id.png)
