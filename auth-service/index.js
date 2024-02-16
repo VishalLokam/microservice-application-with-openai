@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken")
 
 app.use(express.json())
 
-mongoose.connect("mongodb+srv://vishalvikaslokam:acRg3s1Cow6enV2N@testcluster1.gbuka8j.mongodb.net/auth-service?retryWrites=true&w=majority").then(
+mongoose.connect("auth-service?retryWrites=true&w=majority").then(
     () => { console.log("Auth-Service DB connected")},
     err => { handleError(err)  }
 )
