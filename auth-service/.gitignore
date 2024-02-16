@@ -7,6 +7,7 @@
 .*
 # Exclude specific dotfiles that we want to track.
 node_modules*
+node_modules*
 !deps/**/.*
 !.devcontainer/
 !.devcontainer/.devcontainer.json
