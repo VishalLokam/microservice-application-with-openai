@@ -4,10 +4,11 @@ const mongoose  = require("mongoose")
 const PORT = process.env.PORT_ONE || 7070
 const User = require("./User")
 const jwt = require("jsonwebtoken")
+require('dotenv').config()
 
 app.use(express.json())
 
-mongoose.connect("auth-service?retryWrites=true&w=majority").then(
+mongoose.connect(`${process.env.CONNECTION_STRING}auth-service?retryWrites=true&w=majority`).then(
     () => { console.log("Auth-Service DB connected")},
     err => { handleError(err)  }
 )
