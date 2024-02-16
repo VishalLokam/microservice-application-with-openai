@@ -3,8 +3,8 @@ GET /health
 Host: localhost:5000
 
 ### Generate product description
-POST /description 
-Host: localhost:5000
+POST generate/description 
+Host: localhost:8080
 Content-Type: application/json
 
 {

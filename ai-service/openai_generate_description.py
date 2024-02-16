@@ -16,7 +16,7 @@ def check_health():
    return "<h1>Seems OK</h1>", 200
 
 
-@app.route("/description", methods=["POST"])
+@app.route("/generate/description", methods=["POST"])
 async def generate_description():
    request_data = request.get_json()
    product_name = request_data.get('product_name')
@@ -60,7 +60,7 @@ async def generate_description():
 
 
 if __name__ == '__main__':
-  app.run(debug=True, port=5000)
+  app.run(host="0.0.0.0", port=5000)
 
 
 

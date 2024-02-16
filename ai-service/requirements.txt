@@ -1,4 +1,3 @@
-dotenv
-os
-flask
+python-dotenv
+flask[async]
 openai
