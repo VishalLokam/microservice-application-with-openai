@@ -13,7 +13,7 @@ client = OpenAI()
 
 @app.route("/health", methods=["GET"])
 def check_health():
-   return "<h1>Seems OK</h1>", 200
+   return "<h1>AI service OK</h1>", 200
 
 
 @app.route("/generate/description", methods=["POST"])
