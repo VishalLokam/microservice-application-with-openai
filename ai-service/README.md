@@ -1,0 +1,21 @@
+# [Work In Progress] Microservice application with an OpenAI component
+
+## How to run the ai-service
+open the `ai-service` folder
+1. Install python dependencies by running the below command
+    ```
+    pip install --no-cache-dir -r requirements.txt
+    ```
+
+2. Get api key and org id from OpenAI website  
+    `https://platform.openai.com/api-keys`  
+    ![Api key](https://github.com/VishalLokam/microservice-application-with-openai/blob/main/ai-service/assets/images/api_key.png)  
+
+    `https://platform.openai.com/account/organization`  
+    ![Organisation id](https://github.com/VishalLokam/microservice-application-with-openai/blob/main/ai-service/assets/images/org_id.png)
+
+3. Create a `.env` file and add api key and org id to the file
+    ```
+    OPENAI_API_KEY=<your_api_key>
+    OPENAI_ORG_ID=<your_org_id>
+    ```
