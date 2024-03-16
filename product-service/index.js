@@ -6,11 +6,12 @@ const jwt = require("jsonwebtoken")
 // var amqp = require("amqplib/callback_api")
 var amqp = require("amqplib")
 const Product = require("./Product")
-const isAuthenticated = require("../isAuthenticated")
+const isAuthenticated = require("./isAuthenticated")
 require('dotenv').config()
 
 
 var channel, connection
+var rabbitmq_error = ""
 
 
 
@@ -27,16 +28,14 @@ async function connectQueue(){
     connection = await amqp.connect("amqp://localhost:5672")
     channel = await connection.createChannel()
   
-    await channel.assertQueue("PRODUCT", {
-      durable: true
-    })
   } catch(error){
+    rabbitmq_error = error
     console.log(error)
   } 
 }
 
 //Get all products
-app.get("/products", isAuthenticated, async(req, res) => {
+app.get("/products", async(req, res) => {
   const products = await Product.find({})
   return res.json(products)
 })
@@ -59,31 +58,39 @@ connectQueue()
 
 
 //User sends a list of product ids to buy
- app.post("/product/buy", isAuthenticated, async(req,res) => {
-  const { ids } = req.body
+ app.post("/product/buy", async(req,res) => {
+  const { ids, userEmail, userAddress } = req.body
   const products = await Product.find({ _id: { $in: ids } })
 
-  await channel.assertQueue("ORDER", {
-    durable: true
-  })
+  //If RabbitMQ is down
+  if(rabbitmq_error != ""){
+    var order_response = {
+      "message": "Order cannot be placed right now. Please try again later"
+    }
+    return res.json(order_response)
+  }
 
-  await channel.assertQueue("PRODUCT", {
+  await channel.assertQueue("ORDER", {
     durable: true
   })
   
   await channel.sendToQueue("ORDER", Buffer.from(JSON.stringify({
     products,
-    userEmail: req.user.email
+    userEmail: userEmail,
+    userAddress: userAddress
   })))
 
   console.log("Sending to ORDER queue") 
-  var order_response
+  
 
-  await channel.consume("PRODUCT", (msg) => {
-    console.log("Consuming from PRODUCT queue")
-    order_response = JSON.parse(msg.content)
-    channel.ack(msg)
-  })
+  var order_response = {
+      "message": "Hooray!!! Order placed. Please wait for the confirmation email. This might take some time based on the order quantity"
+  }
+
+  // await channel.consume("PRODUCT", (msg) => {
+  //   console.log("Consuming from PRODUCT queue")
+  //   order_response = JSON.parse(msg.content)
+  // })
   
   return res.json(order_response)
  })

@@ -5,7 +5,7 @@ const PORT = process.env.PORT_ONE || 9090
 const jwt = require("jsonwebtoken")
 var amqp = require("amqplib")
 const Order = require("./Order")
-const isAuthenticated = require("../isAuthenticated")
+// const isAuthenticated = require("../isAuthenticated")
 require('dotenv').config()
 
 var channel, connection
@@ -17,6 +17,10 @@ mongoose.connect(`${process.env.CONNECTION_STRING}order-service?retryWrites=true
     err => { handleError(err)  }
 )
 
+app.get("/order-service/health", async(req, res) => {
+  return res.status(200)
+})
+
 async function connectQueue(){
   try{
     connection = await amqp.connect("amqp://localhost:5672")
@@ -26,16 +30,15 @@ async function connectQueue(){
       durable: true
     })
 
-    await channel.assertQueue("PRODUCT", {
+    await channel.assertQueue("EMAIL", {
       durable: true
     })
     
     await channel.consume("ORDER", (msg) => {
       console.log("Consuming ORDER queue")
-      const { products, userEmail } = JSON.parse(msg.content)
-      const newOrder = createOrder(products, userEmail)
-      channel.sendToQueue("PRODUCT", Buffer.from(JSON.stringify({  newOrder })))
-      console.log("Sending to PRODUCT queue")
+      const { products, userEmail, userAddress } = JSON.parse(msg.content)
+      const newOrder = createOrder(products, userEmail, userAddress)
+      channel.sendToQueue("EMAIL", Buffer.from(JSON.stringify({ newOrder })))
       channel.ack(msg)
     }, {
       noAck: false
@@ -47,7 +50,7 @@ async function connectQueue(){
 
 connectQueue()
 
-function createOrder(products, userEmail){
+function createOrder(products, userEmail, userAddress){
   let total = 0
   for (let t=0; t<products.length; t++){
     total += products[t].price
@@ -55,7 +58,8 @@ function createOrder(products, userEmail){
 
   const newOrder = new Order({
     products,
-    user: userEmail,
+    userEmail: userEmail,
+    userAddress: userAddress,
     total_price: total
   })
 

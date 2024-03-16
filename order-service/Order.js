@@ -8,6 +8,7 @@ const OrderSchema = new Schema({
        } 
     ],
     user: String,
+    address: String,
     total_price:Number,
     created_at: {
         type: Date,
