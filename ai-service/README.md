@@ -1,6 +1,7 @@
-# [Work In Progress] Microservice application with an OpenAI component
+# AI-Service for the ecommerce website
+Purpose of the `ai-service` is to generate description for the products using `product name` and `tags` associated to the products.
 
-## How to run the ai-service
+## How to run the ai-service locally
 open the `ai-service` folder
 1. Install python dependencies by running the below command
     ```
@@ -18,4 +19,26 @@ open the `ai-service` folder
     ```
     OPENAI_API_KEY=<your_api_key>
     OPENAI_ORG_ID=<your_org_id>
+    ```
+
+4. Run the below command  
+    ```
+    python openai_generate_description.py
+    ```
+
+## How to run the ai-service using docker command
+```
+docker container run -d -p 5000:5000 --name ai-service -e OPENAI_API_KEY=<your_api_key> -e OPENAI_ORG_ID=<your_org_id> vishallokam/ecommerce-description-generation-service:latest
+```
+
+## Endpoints
+- `/health` :- `GET` request to check the service health. It will pass `200` status code if the service is up.  
+
+- `/generate/description` :- `POST` request to generate the description using OpenAI API.  
+Example `POST` request body.  
+    ```
+    {
+        "product_name": "Dog ball",
+        "product_tags": "Dog, play, puppy"
+    }
     ```
