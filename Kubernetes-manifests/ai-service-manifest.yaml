@@ -27,7 +27,7 @@ spec:
       - name: ai-service-container
         image: vishallokam/ecommerce-description-generation-service:latest
         ports:
-        - containerPort: 5001
+        - containerPort: 5000
         env:
         - name: OPENAI_API_KEY 
           valueFrom: 
