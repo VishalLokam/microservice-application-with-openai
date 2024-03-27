@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ai-service-secret
+data:
+  # These are encoded base64 using command "echo -n '<api_key>' | base64" and "echo -n '<org_id>' | base64"
+  OPENAI_API_KEY: <your_api_key>
+  OPENAI_ORG_ID: <your_org_id>
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-service
+  template:
+    metadata:
+      labels:
+        app: ai-service
+    spec:
+      containers:
+      - name: ai-service-container
+        image: vishallokam/ecommerce-description-generation-service:latest
+        ports:
+        - containerPort: 5001
+        env:
+        - name: OPENAI_API_KEY 
+          valueFrom: 
+            secretKeyRef:
+              name: ai-service-secret
+              key: OPENAI_API_KEY
+        - name: OPENAI_ORG_ID 
+          valueFrom: 
+            secretKeyRef:
+              name: ai-service-secret
+              key: OPENAI_ORG_ID
+        resources:
+          requests:
+            cpu: 20m
+            memory: 46Mi
+          limits:
+            cpu: 30m
+            memory: 65Mi
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5000
+      targetPort: 5000
+  selector:
+    app: ai-service
