@@ -3,7 +3,3 @@
 ## Architecture Diagram
 ![Architecture](https://github.com/VishalLokam/microservice-application-with-openai/blob/main/Assets/Architecture-diagram.png)
 
-Run the below command in project folder
-```
-npm i
-```
