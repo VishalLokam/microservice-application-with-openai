@@ -13,6 +13,10 @@ mongoose.connect(`${process.env.CONNECTION_STRING}auth-service?retryWrites=true&
     err => { handleError(err)  }
 )
 
+app.get("/auth/health", async(req, res) => {
+    return res.send("<h1>Auth service OK</h1>").status(200)
+})
+
 app.post("/auth/register", async (req, res) => {
     const { email, password, name } = req.body
     
