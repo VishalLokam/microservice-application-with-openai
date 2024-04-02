@@ -4,10 +4,12 @@ from openai import OpenAI
 from openai_context import user_content
 from openai_context import assistant_content
 from openai_context import system_prompts 
+from flask_cors import CORS
 
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)
 client = OpenAI()
 
 
