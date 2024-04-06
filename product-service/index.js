@@ -54,13 +54,14 @@ app.post("/product", async (req, res) => {
 
 //Create a new product
 app.post("/product/create", isAuthenticated, async (req, res) => {
-  const { name, tags, description, price, created_by } = req.body;
+  const { name, tags, description, price, created_by, img_url } = req.body;
   const newProduct = new Product({
     name,
     tags,
     description,
     price,
     created_by,
+    img_url,
   });
   newProduct.save();
   return res.json(newProduct);

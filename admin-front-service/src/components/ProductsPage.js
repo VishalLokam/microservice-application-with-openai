@@ -12,7 +12,6 @@ export default function ProductsPage() {
   const fetchProductDetails = () => {
     axios.get("http://127.0.0.1:8080/products").then((res) => {
       setResProductsFromAPI(res.data);
-      console.log(res.data);
     });
   };
 
@@ -24,6 +23,7 @@ export default function ProductsPage() {
           name={resProductFromAPI.name}
           description={resProductFromAPI.description}
           price={resProductFromAPI.price}
+          img_url={resProductFromAPI.img_url}
         />
       ));
       return products;
@@ -32,5 +32,9 @@ export default function ProductsPage() {
     }
   }
 
-  return <div>{renderProductsList()}</div>;
+  return (
+    <div className="row row-cols-1 row-cols-md-3 g-4">
+      {renderProductsList()}
+    </div>
+  );
 }

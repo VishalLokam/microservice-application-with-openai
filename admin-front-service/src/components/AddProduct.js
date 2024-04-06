@@ -4,11 +4,11 @@ import { useState } from "react";
 
 export default function AddProduct() {
   const { user, http } = AuthUser();
-  //   const [products, setProducts] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productName, setProductName] = useState("");
   const [productTags, setProductTags] = useState("");
   const [productPrice, setProductPrice] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [generateIndicator, setGenerateIndicator] = useState(
     "Generate Description"
   );
@@ -21,9 +21,11 @@ export default function AddProduct() {
       description: productDescription,
       price: productPrice,
       created_by: user.email,
+      img_url: imageUrl,
     };
 
     http.post("http://127.0.0.1:8080/product/create", product).then((res) => {
+      console.log("New product added");
       console.log(res);
     });
 
@@ -32,12 +34,8 @@ export default function AddProduct() {
     setProductName("");
     setProductTags("");
     setProductPrice("");
+    setImageUrl("");
 
-    // axios.get("http://127.0.0.1:8080/products").then((res) => {
-    //   console.log(res.data.length);
-    //   setProducts(res.data.length);
-    // });
-    // updateProductCount();
     window.alert("New Product Added");
   };
 
@@ -56,15 +54,8 @@ export default function AddProduct() {
       });
   };
 
-  //   axios.get("http://127.0.0.1:8080/products").then((res) => {
-  //     console.log(res.data.length);
-  //     setProducts(res.data.length);
-  // });
-
   return (
     <div className="m-5">
-      {/* <h4>Number of products in the store: {products}</h4> */}
-
       <form>
         <div className="mb-3">
           <label htmlFor="productname" className="form-label">
@@ -126,6 +117,19 @@ export default function AddProduct() {
               value={productPrice}
             />
           </div>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="imgUrl" className="form-label">
+            Product image url(externally hosted image)
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="imgUrl"
+            aria-describedby="imgUrl"
+            onChange={(e) => setImageUrl(e.target.value)}
+            value={imageUrl}
+          />
         </div>
 
         <button
