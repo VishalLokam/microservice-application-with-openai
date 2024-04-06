@@ -62,7 +62,7 @@ export default function AddProduct() {
   // });
 
   return (
-    <div className="mt-5">
+    <div className="m-5">
       {/* <h4>Number of products in the store: {products}</h4> */}
 
       <form>
