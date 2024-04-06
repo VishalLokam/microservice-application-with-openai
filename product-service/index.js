@@ -45,6 +45,13 @@ app.get("/products", async (req, res) => {
   return res.json(products);
 });
 
+//Get one product
+app.post("/product", async (req, res) => {
+  const { id } = req.body;
+  const product = await Product.findOne({ _id: { $in: id } });
+  return res.json(product);
+});
+
 //Create a new product
 app.post("/product/create", isAuthenticated, async (req, res) => {
   const { name, tags, description, price, created_by } = req.body;
@@ -65,6 +72,7 @@ connectQueue();
 app.post("/product/buy", async (req, res) => {
   const { ids, userEmail, userAddress } = req.body;
   const products = await Product.find({ _id: { $in: ids } });
+  console.log(products);
 
   //If RabbitMQ is down
   if (rabbitmq_error != "") {
