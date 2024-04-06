@@ -2,7 +2,7 @@ export default function ProductCard({ name, description, price }) {
   return (
     <div>
       <div
-        className="card mt-1 mb-1
+        className="card mt-2 ms-2 me-2  border-secondary
       "
       >
         <div className="card-body">

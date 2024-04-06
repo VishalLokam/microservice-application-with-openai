@@ -1,12 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
-import { Routes, Route, Link } from "react-router-dom";
-import Dashboard from "../components/Dashboard";
+import { Link } from "react-router-dom";
+// import Dashboard from "../components/Dashboard";
 // import Login from "../components/Login";
 import AuthUser from "../components/AuthUser";
-import AddProduct from "../components/AddProduct";
+// import AddProduct from "../components/AddProduct";
 // import ProductCard from "../components/ProductCard";
-import ProductsPage from "../components/ProductsPage";
+// import ProductsPage from "../components/ProductsPage";
 
 function PostLogin() {
   const { token, logout } = AuthUser();
@@ -39,14 +39,6 @@ function PostLogin() {
           </span>
         </div>
       </nav>
-
-      <div className="container">
-        <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/add-product" element={<AddProduct />} />
-          <Route path="/get-all-products" element={<ProductsPage />} />
-        </Routes>
-      </div>
     </div>
   );
 }

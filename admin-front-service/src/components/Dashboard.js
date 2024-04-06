@@ -30,7 +30,8 @@ export default function Dashboard() {
   };
 
   const getAllOrders = () => {
-    console.log("Get all products");
+    console.log("Get all Orders");
+    navigate("/get-all-orders");
   };
 
   return (

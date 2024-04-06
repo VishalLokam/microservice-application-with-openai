@@ -1,8 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
-import { Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import Dashboard from "../components/Dashboard";
-import Login from "../components/Login";
+// import Login from "../components/Login";
 // import AuthUser from "../components/AuthUser";
 
 function PreLogin() {
@@ -21,12 +21,6 @@ function PreLogin() {
           <span className="navbar-text">Admin login</span>
         </div>
       </nav>
-
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<Login />} />
-        </Routes>
-      </div>
     </div>
   );
 }
