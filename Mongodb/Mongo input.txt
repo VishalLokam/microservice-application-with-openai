@@ -1,0 +1,49 @@
+use auth-service
+db.createCollection("users")
+
+db.users.insertMany([
+  {
+    "name": "supervisor",
+    "email": "supervisor@ecommerce.com",
+    "password": "12341234"
+  },
+  {
+    "name": "admin",
+    "email": "admin@ecommerce.com",
+    "password": "12341234"
+  }
+])
+
+--------------------------------------------------------------------------------
+
+use product-service
+db.createCollection("products")
+
+db.products.insertMany([
+  {
+    "name": "PurrfectPan cat litter box",
+    "tags": "cat, litter, clean, hygiene",
+    "description": "Ensure cleanliness and hygiene with the PurrfectPan cat litter box. Designed for easy maintenance, it provides a comfortable and mess-free environment for your cat to do their business.",
+    "price": 3000,
+    "created_by": "admin@ecommerce.com",
+    "img_url": "https://i.imgur.com/iBK83bn.png"
+  } 
+]) 
+
+-----------------------------------------------------------------------------
+
+use order-service
+db.createCollection("orders")
+
+db.orders.insertMany([
+  {
+    "productsWithQuantity": [
+        {
+            "id": "661ac141e4b253c974bd74df",
+            "quantity": 2
+        }
+    ],
+    "userEmail": "vishallokam07@gmail.com",
+    "userAddress": "11/22, Address_test"
+}   
+])

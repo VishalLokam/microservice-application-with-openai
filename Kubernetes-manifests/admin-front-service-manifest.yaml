@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-front-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: admin-front-service
+      app: admin-front-service
+  template:
+    metadata:
+      labels:
+        service: admin-front-service
+        app: admin-front-service
+      annotations: 
+        consul.hashicorp.com/connect-inject: "true"
+    spec:
+      serviceAccountName: admin-front-service
+      containers:
+      - name: admin-front-service-container
+        image: vishallokam/ecommerce-admin-front-service:1.0-alpine
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: "1"
+          requests:
+            memory: 256Mi
+            cpu: "0.2"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin-front-service
+  namespace: default
+  labels:
+    app: admin-front-service
+spec:
+  type: ClusterIP
+  selector:
+    app: admin-front-service
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 80
+
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-front-service
+  namespace: default
+automountServiceAccountToken: true
+---
+
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceDefaults
+metadata:
+  name: admin-front-service
+  namespace: default
+spec:
+  protocol: "http"
+
+

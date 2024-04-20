@@ -1,0 +1,13 @@
+### Get ai service health
+GET /health
+Host: localhost:5000
+
+### Generate product description
+POST generate/description 
+Host: localhost:5000
+Content-Type: application/json
+
+{
+    "product_name": "Cat food",
+    "product_tags": "cat,food,yummy"
+}

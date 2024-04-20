@@ -1,0 +1,4 @@
+python-dotenv
+flask[async]
+openai
+flask-cors
