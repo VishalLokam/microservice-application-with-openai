@@ -27,7 +27,10 @@ mongoose.connect(`${process.env.CONNECTION_STRING}`).then(
 
 async function connectQueue() {
   try {
-    connection = await amqp.connect("amqp://localhost:5672");
+    connection = await amqp.connect(
+      `${process.env.RABBITMQ_CONNECTION_STRING}`
+    );
+    // console.log(process.env.RABBITMQ_CONNECTION_STRING);
     channel = await connection.createChannel();
   } catch (error) {
     rabbitmq_error = error;
