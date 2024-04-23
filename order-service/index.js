@@ -29,7 +29,9 @@ app.get("/order-service/health", async (req, res) => {
 
 async function connectQueue() {
   try {
-    connection = await amqp.connect("amqp://localhost:5672");
+    connection = await amqp.connect(
+      `${process.env.RABBITMQ_CONNECTION_STRING}`
+    );
     channel = await connection.createChannel();
 
     await channel.assertQueue("ORDER", {
@@ -72,10 +74,18 @@ connectQueue();
 function createOrder(productsForOrderDetails, userEmail, userAddress) {
   let total = 0;
   for (let t = 0; t < productsForOrderDetails.length; t++) {
+    console.log(
+      "price " +
+        productsForOrderDetails[t].price +
+        " quantity " +
+        productsForOrderDetails[t].quantity
+    );
     let productPriceTotal =
       productsForOrderDetails[t].price * productsForOrderDetails[t].quantity;
     total = total + productPriceTotal;
   }
+
+  console.log(total);
 
   const newOrder = new Order({
     productsForOrderDetails,
