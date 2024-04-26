@@ -1,0 +1,53 @@
+---
+# Allow traffic from admin-front-service to auth-service
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceIntentions
+metadata:
+  name: admintoauth
+  namespace: default
+spec:
+  destination:
+    name: auth-service
+  sources:
+    - name: admin-front-service
+      action: allow
+---
+# Allow traffic from admin-front-service to order-service
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceIntentions
+metadata:
+  name: admintoorder
+  namespace: default
+spec:
+  destination:
+    name: order-service
+  sources:
+    - name: admin-front-service
+      action: allow
+---
+# Allow traffic from admin-front-service to product-service
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceIntentions
+metadata:
+  name: admintoproduct
+  namespace: default
+spec:
+  destination:
+    name: product-service
+  sources:
+    - name: admin-front-service
+      action: allow
+---
+# Allow traffic from admin-front-service to ai-service
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceIntentions
+metadata:
+  name: admintoai
+  namespace: default
+spec:
+  destination:
+    name: ai-service
+  sources:
+    - name: admin-front-service
+      action: allow
+---

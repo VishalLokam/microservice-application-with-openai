@@ -4,8 +4,8 @@ metadata:
   name: ai-service-secret
 data:
   # These are encoded base64 using command "echo -n '<api_key>' | base64" and "echo -n '<org_id>' | base64"
-  OPENAI_API_KEY: "<api_key>"
-  OPENAI_ORG_ID: "<org_id>"
+  OPENAI_API_KEY: ""
+  OPENAI_ORG_ID: ""
 
 ---
 
@@ -87,3 +87,14 @@ metadata:
   namespace: default
 spec:
   protocol: "http"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-service-externalname
+  namespace: default
+spec:
+  type: ExternalName
+  externalName: api.openai.com
