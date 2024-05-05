@@ -1,59 +1,49 @@
-locals {
-  cluster_id = "${var.cluster_id}-${random_string.cluster_id.id}"
-}
-
-resource "random_string" "cluster_id" {
-  length  = 6
-  special = false
-  upper   = false
-}
-
-variable "network_region" {
+variable "resource_group_name" {
   type        = string
-  description = "the network region"
-  # default     = "West US 2"
-  default = "centralindia"
+  description = "RG name in Azure"
 }
 
-variable "cluster_id" {
+variable "location" {
   type        = string
-  description = "the cluster id is unique. All other unique values will be derived from this (resource group, vnet etc)"
-  default     = "learn-hcp-gs"
+  description = "Resource location on Azure"
 }
 
-variable "consul_version" {
+variable "cluster_name" {
   type        = string
-  description = "The Consul version"
-  default     = "v1.14.4"
+  description = "AKS name in Azure"
 }
 
-variable "vnet_cidrs" {
-  type        = list(string)
-  description = "the CIDR ranges of the vnet. This should make sense with vnet_subnets"
-  default     = ["10.0.0.0/16"]
+variable "kubernetes_version" {
+  type        = string
+  description = "Kubernetes version"
 }
 
-variable "vnet_subnets" {
-  type        = map(string)
-  description = "the subnets associated with the vnet"
-  default = {
-    "subnet1" = "10.0.1.0/24",
-    "subnet2" = "10.0.2.0/24",
-    "subnet3" = "10.0.3.0/24",
-  }
+variable "system_node_count" {
+  type        = number
+  description = "Number of AKS worker nodes"
 }
 
-variable "subnet_delegation" {
-  type        = map(map(any))
-  description = "A map of subnet name to delegation block on the subnet"
-  default = {
-    subnet1 = {
-      "aks-delegation" = {
-        service_name = "Microsoft.ContainerService/managedClusters"
-        service_actions = [
-          "Microsoft.Network/virtualNetworks/subnets/join/action"
-        ]
-      }
-    }
-  }
+variable "acr_name" {
+  type        = string
+  description = "ACR name"
+}
+
+variable "appId" {
+  type        = string
+  description = "App id of the service principal"
+}
+
+variable "principalid" {
+  type = string
+  description = "Object id of the service principal"
+}
+
+variable "password" {
+  type        = string
+  description = "Pass of the service principal"
+}
+
+variable "dns_prefix" {
+  type = string
+  description = "Value for DNS prefix passed in main.tf"
 }

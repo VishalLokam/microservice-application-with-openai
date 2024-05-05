@@ -7,10 +7,12 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   const updateProductCount = () => {
-    axios.get("http://product-service:8080/products").then((res) => {
-      console.log(res.data.length);
-      setProductCount(res.data.length);
-    });
+    axios
+      .get(`http://${process.env.REACT_APP_INGRESS_PUBLIC_IP}/products`)
+      .then((res) => {
+        console.log(res.data.length);
+        setProductCount(res.data.length);
+      });
   };
 
   updateProductCount();

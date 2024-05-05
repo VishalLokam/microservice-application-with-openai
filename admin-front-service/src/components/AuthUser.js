@@ -35,7 +35,7 @@ export default function AuthUser() {
   };
 
   const http = axios.create({
-    baseURL: "http://auth-service:7070/auth/login",
+    baseURL: `http://${process.env.REACT_APP_INGRESS_PUBLIC_IP}/auth/login`,
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,

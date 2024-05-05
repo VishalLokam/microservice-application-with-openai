@@ -11,10 +11,12 @@ export default function OrdersPage() {
   }, []);
 
   const fetchOrderDetails = () => {
-    axios.get("http://order-service:9090/orders").then((res) => {
-      setResOrdersFromAPI(res.data);
-      // console.log(res.data);
-    });
+    axios
+      .get(`http://${process.env.REACT_APP_INGRESS_PUBLIC_IP}/orders`)
+      .then((res) => {
+        setResOrdersFromAPI(res.data);
+        // console.log(res.data);
+      });
   };
 
   function renderProductsList() {

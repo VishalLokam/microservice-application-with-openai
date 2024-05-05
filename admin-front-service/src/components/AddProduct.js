@@ -3,6 +3,8 @@ import axios from "axios";
 import { useState } from "react";
 import Navigation from "./Navigation";
 
+// require("dotenv").config();
+
 export default function AddProduct() {
   const { user, http } = AuthUser();
   const [productDescription, setProductDescription] = useState("");
@@ -35,7 +37,10 @@ export default function AddProduct() {
       };
 
       http
-        .post("http://product-service:8080/product/create", product)
+        .post(
+          `http://${process.env.REACT_APP_INGRESS_PUBLIC_IP}/product/create`,
+          product
+        )
         .then((res) => {
           console.log("New product added");
           console.log(res);
@@ -57,10 +62,13 @@ export default function AddProduct() {
     setGenerateIndicator("Generating...");
     console.log("Generate description");
     axios
-      .post("http://ai-service:5000/generate/description", {
-        product_name: productName,
-        product_tags: productTags,
-      })
+      .post(
+        `http://${process.env.REACT_APP_INGRESS_PUBLIC_IP}/generate/description`,
+        {
+          product_name: productName,
+          product_tags: productTags,
+        }
+      )
       .then((res) => {
         setProductDescription(res.data.description);
         setGenerateIndicator("Generate description");

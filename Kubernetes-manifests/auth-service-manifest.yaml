@@ -24,10 +24,10 @@ spec:
     metadata:
       labels:
         app: auth-service
-      annotations: 
-        consul.hashicorp.com/connect-inject: "true"
+      # annotations: 
+      #   consul.hashicorp.com/connect-inject: "true"
     spec:
-      serviceAccountName: auth-service
+      # serviceAccountName: auth-service
       containers:
       - name: auth-service-container
         image: vishallokam/ecommerce-auth-service:1.0
@@ -67,21 +67,21 @@ spec:
     port: 7070
     targetPort: 7070
 
----
+# ---
 
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: auth-service
-  namespace: default
-automountServiceAccountToken: true
+# apiVersion: v1
+# kind: ServiceAccount
+# metadata:
+#   name: auth-service
+#   namespace: default
+# automountServiceAccountToken: true
 
----
+# ---
 
-apiVersion: consul.hashicorp.com/v1alpha1
-kind: ServiceDefaults
-metadata:
-  name: auth-service
-  namespace: default
-spec:
-  protocol: "http"
+# apiVersion: consul.hashicorp.com/v1alpha1
+# kind: ServiceDefaults
+# metadata:
+#   name: auth-service
+#   namespace: default
+# spec:
+#   protocol: "http"

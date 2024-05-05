@@ -11,9 +11,11 @@ export default function ProductsPage() {
   }, []);
 
   const fetchProductDetails = () => {
-    axios.get("http://product-service:8080/products").then((res) => {
-      setResProductsFromAPI(res.data);
-    });
+    axios
+      .get(`http://${process.env.REACT_APP_INGRESS_PUBLIC_IP}/products`)
+      .then((res) => {
+        setResProductsFromAPI(res.data);
+      });
   };
 
   function renderProductsList() {

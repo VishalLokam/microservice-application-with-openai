@@ -17,20 +17,17 @@ terraform {
       source  = "gavinbunney/kubectl"
       version = ">= 1.11.3"
     }
-    random = {
-      source  = "hashicorp/random"
-      version = ">= 2"
-    }
+
   }
-
-  required_version = ">= 1.0.11"
-
   provider_meta "hcp" {
     module_name = "hcp-consul"
   }
 }
 
-# Configure providers to use the credentials from the AKS cluster.
+provider "azurerm" {
+  features {}
+}
+
 provider "helm" {
   kubernetes {
     client_certificate     = base64decode(azurerm_kubernetes_cluster.k8s.kube_config.0.client_certificate)
@@ -59,8 +56,4 @@ provider "kubectl" {
   load_config_file       = false
   password               = azurerm_kubernetes_cluster.k8s.kube_config.0.password
   username               = azurerm_kubernetes_cluster.k8s.kube_config.0.username
-}
-
-provider "azurerm" {
-  features {}
 }

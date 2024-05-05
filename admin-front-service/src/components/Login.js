@@ -12,7 +12,7 @@ export default function Login() {
   const submitLoginForm = (e) => {
     e.preventDefault();
     http
-      .post("http://auth-service:7070/auth/login", {
+      .post(`http://${process.env.REACT_APP_INGRESS_PUBLIC_IP}/auth/login`, {
         email: email,
         password: password,
       })

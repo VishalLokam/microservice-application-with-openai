@@ -1,16 +1,20 @@
-output "azure_rg_name" {
-  value = azurerm_resource_group.rg.name
+output "resource_group_name" {
+  value = azurerm_resource_group.aks-tf-tut-rg.name
 }
 
-output "aks_cluster_name" {
-  value = azurerm_kubernetes_cluster.k8s.name
+output "kubernetes_cluster_name" {
+  value = azurerm_kubernetes_cluster.aks-kubernetes-cluster.name
 }
+# output "acr_login_server" {
+#   value = azurerm_container_registry.aks-container-registry.login_server
+# }
 
-output "kube_config_raw" {
-  value     = azurerm_kubernetes_cluster.k8s.kube_config_raw
-  sensitive = true
-}
+# output "acr_username" {
+#   value = azurerm_container_registry.aks-container-registry.admin_username
+# }
 
-output "region" {
-  value = var.network_region
-}
+# output "acr_password" {
+#   value     = azurerm_container_registry.aks-container-registry.admin_password
+#   sensitive = true
+# }
+

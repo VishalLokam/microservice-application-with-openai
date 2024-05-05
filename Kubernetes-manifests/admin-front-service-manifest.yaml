@@ -13,13 +13,13 @@ spec:
       labels:
         service: admin-front-service
         app: admin-front-service
-      annotations: 
-        consul.hashicorp.com/connect-inject: "true"
+      # annotations: 
+      #   consul.hashicorp.com/connect-inject: "true"
     spec:
-      serviceAccountName: admin-front-service
+      # serviceAccountName: admin-front-service
       containers:
       - name: admin-front-service-container
-        image: vishallokam/ecommerce-admin-front-service:1.0-alpine
+        image: vishallokam/ecommerce-admin-front-service:4.0-test
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
@@ -30,6 +30,9 @@ spec:
           requests:
             memory: 256Mi
             cpu: "0.2"
+        env:
+        - name: REACT_APP_INGRESS_PUBLIC_IP
+          value: ""
 
 ---
 
@@ -51,21 +54,31 @@ spec:
     targetPort: 80
 
 ---
-
 apiVersion: v1
-kind: ServiceAccount
+kind: Service
 metadata:
-  name: admin-front-service
-  namespace: default
-automountServiceAccountToken: true
----
-
-apiVersion: consul.hashicorp.com/v1alpha1
-kind: ServiceDefaults
-metadata:
-  name: admin-front-service
+  name: admin-service-externalname
   namespace: default
 spec:
-  protocol: "http"
+  type: ExternalName
+  externalName: imgur.com
+
+# ---
+
+# apiVersion: v1
+# kind: ServiceAccount
+# metadata:
+#   name: admin-front-service
+#   namespace: default
+# automountServiceAccountToken: true
+# ---
+
+# apiVersion: consul.hashicorp.com/v1alpha1
+# kind: ServiceDefaults
+# metadata:
+#   name: admin-front-service
+#   namespace: default
+# spec:
+#   protocol: "http"
 
 
