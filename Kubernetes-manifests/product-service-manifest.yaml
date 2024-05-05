@@ -4,8 +4,8 @@ metadata:
   name: product-service-secret
 data:
   # This encoded base64 <Mongodb connection string>
-  CONNECTION_STRING: "bW9uZ29kYjovL3Jvb3Q6cm9vdFBhc3N3b3JkQG1vbmdvLW1vbmdvZGItaGVhZGxlc3MubW9uZ28uc3ZjLmNsdXN0ZXIubG9jYWw6MjcwMTcvcHJvZHVjdC1zZXJ2aWNlP2F1dGhTb3VyY2U9YWRtaW4K"
-  RABBITMQ_CONNECTION_STRING: "YW1xcDovL3VzZXI6dXNlclBhc3N3b3JkQHJhYmJpdG1xLnJhYmJpdG1xLnN2Yy5jbHVzdGVyLmxvY2FsOjU2NzIK"			
+  CONNECTION_STRING: ""
+  RABBITMQ_CONNECTION_STRING: ""			
 
 
 ---
