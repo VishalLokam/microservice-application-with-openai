@@ -26,8 +26,8 @@ resource "azurerm_kubernetes_cluster" "aks-kubernetes-cluster" {
   }
 
   service_principal {
-    client_id     = ""
-    client_secret = ""
+    client_id     = var.appId
+    client_secret = var.password
   }
 
   role_based_access_control_enabled = true
