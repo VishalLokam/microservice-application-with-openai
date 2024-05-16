@@ -5,7 +5,8 @@ metadata:
 data:
   # This encoded base64 <Mongodb connection string>
   CONNECTION_STRING: ""
-  RABBITMQ_CONNECTION_STRING: ""
+  RABBITMQ_CONNECTION_STRING: ""			
+
 
 ---
 

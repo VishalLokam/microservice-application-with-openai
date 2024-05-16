@@ -19,7 +19,7 @@ spec:
       # serviceAccountName: admin-front-service
       containers:
       - name: admin-front-service-container
-        image: vishallokam/ecommerce-admin-front-service:4.0-test
+        image: vishallokam/ecommerce-admin-front-service:1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
@@ -32,6 +32,7 @@ spec:
             cpu: "0.2"
         env:
         - name: REACT_APP_INGRESS_PUBLIC_IP
+          # Public ip of lb
           value: ""
 
 ---

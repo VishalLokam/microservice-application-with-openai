@@ -4,8 +4,7 @@ metadata:
   name: auth-service-secret
 data:
   # This encoded base64 <Mongodb connection string> || "echo -n '<mongo_conn_string>' | base64"
-  CONNECTION_STRING: ""
-   
+  CONNECTION_STRING: ""   
 ---
 
 apiVersion: apps/v1

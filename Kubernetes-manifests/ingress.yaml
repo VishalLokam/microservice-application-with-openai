@@ -24,13 +24,6 @@ spec:
             name: ai-service
             port: 
               number: 5000
-      - path: "/health"
-        pathType: Prefix
-        backend:
-          service:
-            name: ai-service
-            port: 
-              number: 5000
       - path: "/products"
         pathType: Prefix
         backend:
@@ -45,7 +38,7 @@ spec:
             name: product-service
             port: 
               number: 8080
-      - path: "/order-service"
+      - path: "/order"
         pathType: Prefix
         backend:
           service:
