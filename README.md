@@ -1,6 +1,6 @@
-# [Work In Progress] Admin console microservice application for an ecommerce site with an OpenAI component
+# Microservice based application with OpenAI API
 
-This project hosts the code for Admin console for an ecommerce site. It is based on microservice based architecture where each service runs independently
+This project encompasses the source code for a sophisticated e-commerce application structured using a microservices architecture. It features an AI service that leverages the OpenAI API, similar to ChatGPT, to autonomously generate descriptions for newly added products. The system employs MongoDB for robust data management and RabbitMQ for efficient message queuing. The frontend component of the application operates as an independent microservice crafted with React, ensuring a dynamic and responsive user interface. Additionally, the backend microservices are developed using NodeJS and Python, offering a versatile and scalable server-side solution.
 
 ## Architecture Diagram
 
