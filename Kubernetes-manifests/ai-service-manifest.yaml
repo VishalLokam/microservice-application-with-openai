@@ -5,7 +5,7 @@ metadata:
 data:
   # These are encoded base64 using command "echo -n '<api_key>' | base64" and "echo -n '<org_id>' | base64"
   OPENAI_API_KEY: ""
-  OPENAI_ORG_ID: ""
+  OPENAI_ORG_ID: "" 
 
 ---
 
@@ -29,7 +29,7 @@ spec:
       # serviceAccountName: ai-service
       containers:
       - name: ai-service-container
-        image: vishallokam/ecommerce-ai-service:2.0
+        image: vishallokam/ecommerce-ai-service:3.0
         ports:
         - containerPort: 5000
         env:

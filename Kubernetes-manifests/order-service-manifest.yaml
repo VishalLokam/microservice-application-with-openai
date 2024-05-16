@@ -6,6 +6,7 @@ data:
   # This encoded base64 <Mongodb connection string>
   CONNECTION_STRING: ""
   RABBITMQ_CONNECTION_STRING: ""
+
  
 ---
 
@@ -31,7 +32,7 @@ spec:
       # serviceAccountName: order-service
       containers:
       - name: order-service-container
-        image: vishallokam/ecommerce-order-service:1.0
+        image: vishallokam/ecommerce-order-service:2.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9090

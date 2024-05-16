@@ -33,10 +33,6 @@ variable "appId" {
   description = "App id of the service principal"
 }
 
-variable "principalid" {
-  type = string
-  description = "Object id of the service principal"
-}
 
 variable "password" {
   type        = string
@@ -44,6 +40,6 @@ variable "password" {
 }
 
 variable "dns_prefix" {
-  type = string
+  type        = string
   description = "Value for DNS prefix passed in main.tf"
 }

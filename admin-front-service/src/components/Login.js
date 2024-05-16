@@ -10,7 +10,8 @@ export default function Login() {
   const [loginAlertMessage, setLoginAlertMessage] = useState("");
 
   const submitLoginForm = (e) => {
-    e.preventDefault();
+    console.log();
+    e.preventDefault(process.env.REACT_APP_INGRESS_PUBLIC_IP);
     http
       .post(`http://${process.env.REACT_APP_INGRESS_PUBLIC_IP}/auth/login`, {
         email: email,

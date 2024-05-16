@@ -23,7 +23,7 @@ mongoose.connect(`${process.env.CONNECTION_STRING}`).then(
   }
 );
 
-app.get("/order-service/health", async (req, res) => {
+app.get("/order/health", async (req, res) => {
   return res.status(200).send("<h1>Order service OK</h1>");
 });
 

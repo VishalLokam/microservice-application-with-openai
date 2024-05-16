@@ -13,7 +13,7 @@ CORS(app)
 client = OpenAI()
 
 
-@app.route("/health", methods=["GET"])
+@app.route("/generate/health", methods=["GET"])
 def check_health():
    return "<h1>AI service OK</h1>", 200
 

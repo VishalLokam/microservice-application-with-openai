@@ -30,7 +30,7 @@ spec:
       # serviceAccountName: auth-service
       containers:
       - name: auth-service-container
-        image: vishallokam/ecommerce-auth-service:1.0
+        image: vishallokam/ecommerce-auth-service:2.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 7070

@@ -80,4 +80,11 @@ This project hosts the code for Admin console for an ecommerce site. It is based
      ```
      helm install rabbitmq --create-namespace -n rabbitmq -f helm/rabbitmq_values.yaml oci://registry-1.docker.io/bitnamicharts/rabbitmq
      ```
-     This chart will install `RabbitMQ` in the `rabbitmq` according to the setting mentioned in the values file from the `./helm/rabbitmq_values.yaml` file.
+     This chart will install `RabbitMQ` in the `rabbitmq` namespace according to the setting mentioned in the values file from the `./helm/rabbitmq_values.yaml` file.
+  4. Install `Traefik` ingress controller
+     ```
+     helm repo add traefik https://helm.traefik.io/traefik
+     helm repo update
+     kubectl create namespace traefik
+     helm install traefik traefik/traefik -n traefik
+     ```
